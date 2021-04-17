@@ -21,7 +21,7 @@ def init_sheep(canvas_local, n):
         X.append([x, y])
         agents['sheep' + str(i)] = sheep.Agent(canvas_local, x - 5, y - 5, x + 5, y + 5, 'green')
 
-    herd = sheep.Agent(canvas_local, 50, 550, 60, 560, 'red')
+    herd = sheep.Agent(canvas_local, 50, 50, 60, 60, 'red')
     return np.array(X, np.float64), agents, herd
 
 
