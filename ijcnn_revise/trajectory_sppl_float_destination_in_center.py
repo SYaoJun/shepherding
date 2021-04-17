@@ -129,9 +129,11 @@ def run_animation(all_sheep, sheep_dict, herd):
 if __name__ == '__main__':
     tk, canvas = gui.init_tkinter()
     steps = []
-    n = 10
-    all_sheep, sheep_dict, shepherd_a = init_sheep(canvas, n)
-    step = run_animation(all_sheep, sheep_dict, shepherd_a)
-    print(step)
+    for n in range(20, 62, 2):
+        all_sheep, sheep_dict, shepherd_a = init_sheep(canvas, n)
+        step = run_animation(all_sheep, sheep_dict, shepherd_a)
+        print("current n = {} and time step = {}".format(n, step))
+        steps.append(step)
+    common.print_list(steps)
     print("knn farthest dist animation over!")
     tk.mainloop()

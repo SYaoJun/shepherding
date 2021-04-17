@@ -129,9 +129,12 @@ if __name__ == '__main__':
     特殊改进点：使用fn+夹角的机制
     """
     tk, canvas = gui.init_tkinter()
-    n = 10
-    all_sheep, sheep_dict, shepherd_a = init_sheep(canvas, n)
-    step = run_animation(all_sheep, sheep_dict, shepherd_a)
-    print(step)
+    steps = []
+    for n in range(20, 62, 2):
+        all_sheep, sheep_dict, shepherd_a = init_sheep(canvas, n)
+        step = run_animation(all_sheep, sheep_dict, shepherd_a)
+        print("current n = {} and time step = {}".format(n, step))
+        steps.append(step)
+    common.print_list(steps)
     print("max double distance animation over!")
     tk.mainloop()
