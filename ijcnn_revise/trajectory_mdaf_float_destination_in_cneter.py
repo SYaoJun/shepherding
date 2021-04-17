@@ -30,6 +30,7 @@ def run_animation(all_sheep, sheep_dict, herd):
     r_dist = 250
     r_rep = 14
     speed = 2
+    target_radius = 75
     n = len(all_sheep)
     app_dist = n + 50
     theta = cmath.pi / 6
@@ -64,7 +65,8 @@ def run_animation(all_sheep, sheep_dict, herd):
         sheepR.sheep_move(herd_point, all_sheep, r_dist, r_rep, speed, sheep_dict, last_vector)
         tk.update()
         time.sleep(0.01)
-        if common.is_all_in_center(all_sheep) or step > 4000:
+
+        if common.is_all_in_center(all_sheep, target, target_radius) or step > 4000:
             for per_sheep in sheep_dict.values():
                 per_sheep.delete()
             herd.delete()
@@ -118,7 +120,7 @@ if __name__ == '__main__':
     特殊改进点：使用fn+夹角的机制
     """
     tk, canvas = gui.init_tkinter()
-    n = 30
+    n = 60
     all_sheep, sheep_dict, shepherd_a = init_sheep(canvas, n)
     step = run_animation(all_sheep, sheep_dict, shepherd_a)
     print(step)

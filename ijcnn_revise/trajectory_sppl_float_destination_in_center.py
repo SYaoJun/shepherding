@@ -54,6 +54,7 @@ def run_animation(all_sheep, sheep_dict, herd):
     dist_shepherd = 0
     pre_mean = np.array([np.mean(all_sheep[:, 0]), np.mean(all_sheep[:, 1])])
     pre_herd = herd.position2point()
+    target_radius = 75
     while True:
         herd_point = herd.position2point().copy()
         if common.check(all_sheep, radius):
@@ -65,8 +66,7 @@ def run_animation(all_sheep, sheep_dict, herd):
 
         tk.update()
         time.sleep(0.01)
-
-        if common.is_all_in_center(all_sheep) or step > 4000:
+        if common.is_all_in_center(all_sheep, target, target_radius) or step > 4000:
             for per_sheep in sheep_dict.values():
                 per_sheep.delete()
             herd.delete()
@@ -121,7 +121,7 @@ def run_animation(all_sheep, sheep_dict, herd):
 if __name__ == '__main__':
     tk, canvas = gui.init_tkinter()
     steps = []
-    n = 30
+    n = 60
     all_sheep, sheep_dict, shepherd_a = init_sheep(canvas, n)
     step = run_animation(all_sheep, sheep_dict, shepherd_a)
     print(step)

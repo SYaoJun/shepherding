@@ -24,9 +24,9 @@ def is_all_in_target(my_sheep):
             return False
     return True
 
-def is_all_in_center(my_sheep):
+def is_all_in_center(my_sheep, target, radius):
     for p in my_sheep:
-        if p[0] < 250 or p[0] > 350 or p[1] < 250 or p[1] > 350:
+        if p[0] < target[0]-radius or p[0] > target[0]+radius or p[1] < target[1]-radius or p[1] > target[1]+radius:
             return False
     return True
 
