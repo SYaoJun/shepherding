@@ -59,13 +59,22 @@ def run_animation(all_sheep, sheep_dict, herd):
         herd_point = herd.position2point().copy()
         if common.check(all_sheep, radius):
             shepherdR.driving(herd, all_sheep, speed, target, app_dist)
+            text = canvas.create_text(220, 20, text="driving", font=("宋体", 18))
+            canvas.pack()
         else:
             shepherdR.collecting(herd, all_sheep, speed, app_dist)
+            text = canvas.create_text(220, 20, text="collecting", font=("宋体", 18))
+            canvas.pack()
 
         sheepR.sheep_move(herd_point, all_sheep, r_dist, r_rep, speed, sheep_dict, last_vector)
 
+        step += 1
+        step_txt = canvas.create_text(420, 20, text="steps: {}/2000".format(step), font=("宋体", 18))
         tk.update()
         time.sleep(0.01)
+        canvas.delete(text)
+        canvas.delete(step_txt)
+
         if common.is_all_in_center(all_sheep, target, target_radius) or step > 4000:
             for per_sheep in sheep_dict.values():
                 per_sheep.delete()
@@ -87,7 +96,6 @@ def run_animation(all_sheep, sheep_dict, herd):
         YY.append(herd.position2point()[1])
         UU.append(global_mean[0])
         VV.append(global_mean[1])
-        step += 1
 
     # 处理轨迹
     fig, ax = plt.subplots()
@@ -121,7 +129,7 @@ def run_animation(all_sheep, sheep_dict, herd):
 if __name__ == '__main__':
     tk, canvas = gui.init_tkinter()
     steps = []
-    n = 60
+    n = 10
     all_sheep, sheep_dict, shepherd_a = init_sheep(canvas, n)
     step = run_animation(all_sheep, sheep_dict, shepherd_a)
     print(step)
