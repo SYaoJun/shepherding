@@ -16,3 +16,9 @@ plt.ylabel("total steps")
 plt.legend()
 plt.grid()
 plt.show()
+
+fig.savefig("E:\\destination_in_center.pdf", dpi=600, format='pdf')
+# mean = np.mean(Y1) - np.mean(Y2)
+#
+# print(mean / np.mean(Y1))
+# 0.09784829907440797  = 9.79%
